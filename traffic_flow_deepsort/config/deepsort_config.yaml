@@ -1,0 +1,38 @@
+# DeepSORT配置文件
+
+# 跟踪器参数
+tracker:
+  max_age: 50              # 轨迹最大存活时间（帧数）
+  n_init: 3                # 确认轨迹需要的连续检测次数
+  max_iou_distance: 0.7    # IOU距离阈值
+  max_cosine_distance: 0.2 # 余弦距离阈值
+  nn_budget: 100           # 特征向量预算
+  embedder: "mobilenet"    # 特征提取器类型
+  half: true               # 使用半精度
+  bgr: true                # BGR格式输入
+  embedder_gpu: true       # GPU加速特征提取
+
+# YOLO检测参数
+detection:
+  model_path: "yolov8m.pt" # YOLO模型路径
+  conf_threshold: 0.1      # 检测置信度阈值
+  classes: [2, 3, 5, 7]    # 检测类别（车辆类别）
+  
+# 车辆类别映射
+vehicle_classes:
+  2: "car"
+  3: "motorcycle"
+  5: "bus"
+  7: "truck"
+
+# 可视化参数
+visualization:
+  line_thickness: 3        # 检测线粗细
+  box_thickness: 2         # 检测框粗细
+  track_thickness: 1       # 轨迹线粗细
+  font_scale: 0.6          # 字体大小
+  
+# 计数参数
+counting:
+  distance_threshold: 8    # 距离阈值（像素）
+  track_history_length: 5  # 轨迹历史长度
